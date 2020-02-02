@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/style.sass';
 
-import HomeComponent from './home/HomeComponent';
+import HomeComponent from './HomeComponent';
 
 class App extends React.Component {
     render() {
