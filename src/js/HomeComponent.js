@@ -11,8 +11,8 @@ class HomeComponent extends React.Component {
         }
     }
 
-    handleSubmit = (q) => {
-        fetchAll(q).then(
+    handleSubmit = (searchQuery) => {
+        fetchAll(searchQuery).then(
             axios.spread((pixabay, giphy) => {
                 console.log(giphy.data.data, pixabay.data.hits);
             }))

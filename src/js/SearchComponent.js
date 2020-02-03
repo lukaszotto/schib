@@ -7,15 +7,21 @@ class SearchComponent extends React.Component {
             searchQuery: ""
         }
     }
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         this.props.handleSubmit(this.state.searchQuery);
+    }
+    handleChange = (event) => {
+        this.setState({
+            searchQuery: event.currentTarget.value
+        });
     }
     render() {
         return (
-            <div>
-                <input onChange={(event) => { this.state.searchQuery = event.currentTarget.value }}></input>
+            <form onSubmit={this.handleSubmit}>
+                <input onChange={this.handleChange}></input>
                 <button onClick={this.handleSubmit}>Search</button>
-            </div>
+            </form>
         )
     }
 };
