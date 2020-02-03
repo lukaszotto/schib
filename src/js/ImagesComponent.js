@@ -6,7 +6,9 @@ const ImagesComponent = ({ images }) => {
         <StyledImagesList>
             {images.map((image) => {
                 return (
-                    <img alt={image.alt} src={image.url} key={image.id}></img>
+                    <div key={image.id}>
+                        <img alt={image.alt} src={image.url}></img>
+                    </div>
                 )
             })}
         </StyledImagesList>

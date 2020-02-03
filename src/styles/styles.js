@@ -4,12 +4,18 @@ export const StyledImagesList = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
     grid-gap: 1rem;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 `
 
 export const StyledForm = styled.form`
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    max-width: 600px;
     input {
         height: 40px;
         font-size: 16px;

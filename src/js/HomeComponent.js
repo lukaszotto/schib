@@ -13,25 +13,14 @@ class HomeComponent extends React.Component {
     }
 
     getImagesArray = (pixabay, giphy) => {
-        var imagesArr = [];
-        if (pixabay.data) {
-            pixabay.data.hits.forEach((image) => {
-                imagesArr.push({
-                    id: image.id,
-                    alt: image.tags,
-                    url: image.webformatURL
-                })
-            });
-        }
-        if (giphy.data) {
-            giphy.data.data.forEach((image) => {
-                imagesArr.push({
-                    id: image.id,
-                    alt: image.title,
-                    url: image.images.downsized.url
-                })
-            });
-        }
+        var imagesArr = [...pixabay.data.hits, ...giphy.data.data];
+        imagesArr = imagesArr.map((image) => {
+            return {
+                id: image.id,
+                alt: image.tags || image.title,
+                url: image.webformatURL || image.images.downsized.url
+            }
+        });
         return imagesArr;
     }
     handleSubmit = (searchQuery) => {
@@ -48,7 +37,7 @@ class HomeComponent extends React.Component {
     render() {
         return (
             <section>
-                <h2>Search</h2>
+                <h2>Search images</h2>
                 <SearchComponent handleSubmit={this.handleSubmit}></SearchComponent>
                 <ImagesComponent images={this.state.images}></ImagesComponent>
             </section>
