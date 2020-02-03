@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchAll } from './api/fetch';
 import axios from 'axios';
 import SearchComponent from './SearchComponent';
+import ImagesComponent from './ImagesComponent';
 
 class HomeComponent extends React.Component {
     constructor() {
@@ -11,10 +12,34 @@ class HomeComponent extends React.Component {
         }
     }
 
+    getImagesArray = (pixabay, giphy) => {
+        var imagesArr = [];
+        if (pixabay.data) {
+            pixabay.data.hits.forEach((image) => {
+                imagesArr.push({
+                    id: image.id,
+                    alt: image.tags,
+                    url: image.webformatURL
+                })
+            });
+        }
+        if (giphy.data) {
+            giphy.data.data.forEach((image) => {
+                imagesArr.push({
+                    id: image.id,
+                    alt: image.title,
+                    url: image.images.downsized.url
+                })
+            });
+        }
+        return imagesArr;
+    }
     handleSubmit = (searchQuery) => {
         fetchAll(searchQuery).then(
             axios.spread((pixabay, giphy) => {
-                console.log(giphy.data.data, pixabay.data.hits);
+                this.setState({
+                    images: this.getImagesArray(pixabay, giphy)
+                });
             }))
             .catch((resErr) => {
                 console.log(resErr);
@@ -25,6 +50,7 @@ class HomeComponent extends React.Component {
             <section>
                 <h3>Search</h3>
                 <SearchComponent handleSubmit={this.handleSubmit}></SearchComponent>
+                <ImagesComponent images={this.state.images}></ImagesComponent>
             </section>
         )
     }
