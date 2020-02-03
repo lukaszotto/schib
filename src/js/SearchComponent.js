@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledForm } from '../styles/styles'
 
 class SearchComponent extends React.Component {
     constructor(props) {
@@ -18,10 +19,10 @@ class SearchComponent extends React.Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <StyledForm onSubmit={this.handleSubmit}>
                 <input onChange={this.handleChange}></input>
                 <button onClick={this.handleSubmit}>Search</button>
-            </form>
+            </StyledForm>
         )
     }
 };

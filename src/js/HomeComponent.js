@@ -48,7 +48,7 @@ class HomeComponent extends React.Component {
     render() {
         return (
             <section>
-                <h3>Search</h3>
+                <h2>Search</h2>
                 <SearchComponent handleSubmit={this.handleSubmit}></SearchComponent>
                 <ImagesComponent images={this.state.images}></ImagesComponent>
             </section>
